@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:43:45 by amarzana          #+#    #+#             */
-/*   Updated: 2022/06/24 17:17:08 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/06/29 16:38:04 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,3 @@ char	*ft_get_path(char **argv_sp, char **envp)
 	}
 	return (NULL);
 }
-
-/* int	main(int argc, char **argv, char **envp)
-{
-	char	*path;
-	char	**argv_sp;
-
-	(void)argc;
-	argv_sp = ft_split(argv[1], ' ');
-	path = ft_get_path(argv_sp, envp);
-	printf("%s\n", path);
-	ft_free(argv_sp);
-	free (path);
-	return (0);
-} */

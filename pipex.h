@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:28:25 by amarzana          #+#    #+#             */
-/*   Updated: 2022/06/28 18:32:07 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:33:39 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_get_path(char **argv_sp, char **envp);
 
 /*			utils			*/
 void	ft_free(char **ptr);
-void	ft_check_infile(char **argv);
-int		ft_check_cmd(int argc, char **argv, char **envp);
+int		ft_get_fd(char *file, int mode);
+void	ft_check_cmd(int argc, char **argv, char **envp);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:14:19 by amarzana          #+#    #+#             */
-/*   Updated: 2022/06/28 18:30:54 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:33:06 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,29 @@ void	ft_free(char **ptr)
 	free(ptr);
 }
 
-void	ft_check_infile(char **argv)
+int	ft_get_fd(char *file, int mode)
 {
 	int	fd;
 
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
+	if (mode == 0)
 	{
-		close(fd);
-		ft_putstr_fd("Invalid or missing input file. Check and try again\n", 2);
-		exit(0);
+		fd = open(file, O_RDONLY);
+		if (fd < 0)
+		{
+			close(fd);
+			ft_putstr_fd("Invalid or missing input file\n", 2);
+			exit(0);
+		}
+		return (fd);
 	}
-	close(fd);
+	else
+	{
+		fd = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
+		return (fd);
+	}
 }
 
-int	ft_check_cmd(int argc, char **argv, char **envp)
+void	ft_check_cmd(int argc, char **argv, char **envp)
 {
 	char	*path;
 	char	**argv_sp;
@@ -57,5 +65,4 @@ int	ft_check_cmd(int argc, char **argv, char **envp)
 		}
 		i++;
 	}
-	return (i - 2);
 }
