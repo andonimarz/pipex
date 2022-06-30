@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:28:25 by amarzana          #+#    #+#             */
-/*   Updated: 2022/06/29 18:33:39 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/06/30 17:25:55 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 
-/*			argv			*/
-/* # define RD_FILE	1
-# define CMD1		2
-# define CMD2		3
-# define WR_FILE	4 */
-
-/*			libft			*/
+/*			mini_libft		*/
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
@@ -35,12 +29,10 @@ char	*ft_strjoin_free(char *s1, char *s2);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putstr_fd(char *s, int fd);
 
-/*			get_path		*/
-char	*ft_get_path(char **argv_sp, char **envp);
-
 /*			utils			*/
 void	ft_free(char **ptr);
 int		ft_get_fd(char *file, int mode);
 void	ft_check_cmd(int argc, char **argv, char **envp);
+char	*ft_get_path(char **argv_sp, char **envp);
 
 #endif

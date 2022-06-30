@@ -6,11 +6,11 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 10:46:06 by amarzana          #+#    #+#             */
-/*   Updated: 2022/06/24 15:09:46 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/06/30 17:50:58 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 void	ft_putendl_fd(char *s, int fd)
 {

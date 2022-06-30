@@ -6,11 +6,11 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:07:07 by amarzana          #+#    #+#             */
-/*   Updated: 2022/06/20 18:29:33 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/06/30 17:51:06 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {

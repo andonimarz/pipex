@@ -6,11 +6,11 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:11 by amarzana          #+#    #+#             */
-/*   Updated: 2022/06/20 18:29:46 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/06/30 17:51:02 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 static int	ft_coincidences(char const *s, char c)
 {
