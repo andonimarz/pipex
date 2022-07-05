@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:19:13 by amarzana          #+#    #+#             */
-/*   Updated: 2022/07/05 17:02:49 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/07/05 17:54:27 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	ft_pipex(char *cmd, char **envp, int fdin)
 	{
 		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
+		close (fd[1]);
 		if (fdin == STDIN_FILENO)
 			exit(1);
 		else
@@ -52,6 +53,7 @@ void	ft_pipex(char *cmd, char **envp, int fdin)
 	{
 		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
+		close (fd[0]);
 		waitpid(pid, &status, 0);
 	}
 }
@@ -71,7 +73,9 @@ int	main(int argc, char **argv, char **envp)
 		fdinfile = ft_get_fd(argv[++i], 0);
 		fdoutfile = ft_get_fd(argv[argc - 1], 1);
 		dup2(fdinfile, STDIN_FILENO);
+		close (fdinfile);
 		dup2(fdoutfile, STDOUT_FILENO);
+		close (fdoutfile);
 		ft_pipex(argv[++i], envp, fdinfile);
 		while (++i < (argc - 2))
 			ft_pipex(argv[i], envp, 1);
