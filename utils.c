@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:14:19 by amarzana          #+#    #+#             */
-/*   Updated: 2022/06/30 17:25:33 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:52:24 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ void	ft_check_cmd(int argc, char **argv, char **envp)
 			ft_free(argv_sp);
 			free(path);
 			exit(0);
+		}
+		else
+		{
+			ft_free(argv_sp);
+			free(path);
 		}
 		i++;
 	}
