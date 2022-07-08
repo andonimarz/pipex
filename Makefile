@@ -6,15 +6,15 @@
 #    By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/20 13:17:29 by amarzana          #+#    #+#              #
-#    Updated: 2022/07/08 17:10:20 by amarzana         ###   ########.fr        #
+#    Updated: 2022/07/08 18:21:16 by amarzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
-BONUS_NAME = pipex_bonus
 CC = gcc
-OBJ_DIR = ../obj
 CFLAGS = -Wall -Werror -Wextra
+OBJ = $(SRC:.c=.o)
+BONUS_OBJ = $(BONUS:.c=.o)
 
 SRC = 	./libft/ft_putendl_fd.c		\
 		./libft/ft_putstr_fd.c		\
@@ -42,33 +42,27 @@ BONUS = ./libft/ft_putendl_fd.c		\
 
 all: $(NAME)
 
-OBJ = $(SRC:.c=.o)
-
 $(NAME): $(OBJ)
-	@ar -rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
-	@$(CC) $(CFLAGS) $(SRC) -o pipex
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 	@echo Mandatory: Compilation done
 
-bonus: $(BONUS_NAME)
-
-BONUS_OBJ = $(BONUS:.c=.o)
-
-$(BONUS_NAME): $(BONUS_OBJ)
-	@ar -rc $(BONUS_NAME) $(BONUS_OBJ)
-	@ranlib $(BONUS_NAME)
-	@$(CC) $(CFLAGS) $(BONUS) -o pipex_bonus
+bonus: $(BONUS_OBJ)
+	@$(CC) $(CFLAGS) -o $(NAME) $(BONUS_OBJ)
 	@echo Bonus: Compilation done
+
+%.o: %.c
+	@echo Generating object $@
+	@${CC} ${CFLAGS} -c $< -o $@
 
 clean:
 	@rm -f $(OBJ) $(BONUS_OBJ)
-	@echo OBJ files removed
+	@echo Object files removed
 
 fclean: clean
-	@rm -f $(NAME) $(BONUS_NAME)
+	@rm -f $(NAME)
 	@rm -f outfile
 	@echo Executable file removed
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

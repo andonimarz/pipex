@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:14:19 by amarzana          #+#    #+#             */
-/*   Updated: 2022/07/08 16:48:12 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/07/08 17:46:18 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void	ft_check_cmd(int argc, char **argv, char **envp)
 		path = ft_get_path(argv_sp, envp);
 		if (!path)
 		{
+			free(path);
 			ft_putstr_fd("invalid CMD: ", 2);
 			ft_putendl_fd(argv_sp[0], 2);
 			ft_free(argv_sp);
-			free(path);
 			exit(0);
 		}
 		else
@@ -111,5 +111,6 @@ char	*ft_get_path(char **argv_sp, char **envp)
 			return (result);
 		}
 	}
+	ft_free(path_sp);
 	return (NULL);
 }
