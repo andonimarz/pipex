@@ -6,13 +6,13 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:19:13 by amarzana          #+#    #+#             */
-/*   Updated: 2022/07/05 17:54:27 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/07/08 17:01:08 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_child(char *cmd, char **envp)
+static void	ft_child(char *cmd, char **envp)
 {
 	char	**cmd_sp;
 	char	*path;
@@ -29,10 +29,9 @@ void	ft_child(char *cmd, char **envp)
 	}
 }
 
-void	ft_pipex(char *cmd, char **envp, int fdin)
+static void	ft_pipex(char *cmd, char **envp)
 {
 	pid_t	pid;
-	int		status;
 	int		fd[2];
 
 	pipe(fd);
@@ -44,42 +43,53 @@ void	ft_pipex(char *cmd, char **envp, int fdin)
 		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
 		close (fd[1]);
-		if (fdin == STDIN_FILENO)
-			exit(1);
-		else
-			ft_child(cmd, envp);
+		ft_child(cmd, envp);
 	}
 	else
 	{
 		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
 		close (fd[0]);
-		waitpid(pid, &status, 0);
+		wait(NULL);
 	}
+}
+
+static void	ft_dups(int argc, char **argv)
+{
+	int	fdin;
+	int	fdout;
+
+	fdin = ft_get_fd(argv[1], 0);
+	fdout = ft_get_fd(argv[argc - 1], 1);
+	dup2(fdin, STDIN_FILENO);
+	close (fdin);
+	dup2(fdout, STDOUT_FILENO);
+	close (fdout);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	int	i;
-	int	fdinfile;
-	int	fdoutfile;
+	int	pid;
 
 	if (argc < 5)
 		ft_putstr_fd("Too few arguments. Check and try again\n", 2);
 	else
 	{
-		i = 0;
+		i = 1;
 		ft_check_cmd(argc, argv, envp);
-		fdinfile = ft_get_fd(argv[++i], 0);
-		fdoutfile = ft_get_fd(argv[argc - 1], 1);
-		dup2(fdinfile, STDIN_FILENO);
-		close (fdinfile);
-		dup2(fdoutfile, STDOUT_FILENO);
-		close (fdoutfile);
-		ft_pipex(argv[++i], envp, fdinfile);
-		while (++i < (argc - 2))
-			ft_pipex(argv[i], envp, 1);
-		ft_child(argv[i], envp);
+		ft_dups(argc, argv);
+		pid = fork();
+		if (pid < 0)
+			perror("Error");
+		if (pid == 0)
+		{
+			while (++i < (argc - 2))
+				ft_pipex(argv[i], envp);
+			ft_child(argv[i], envp);
+		}
+		else
+			wait(NULL);
 	}
 	return (0);
 }

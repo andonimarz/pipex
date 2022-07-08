@@ -6,7 +6,7 @@
 #    By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/20 13:17:29 by amarzana          #+#    #+#              #
-#    Updated: 2022/07/05 17:30:19 by amarzana         ###   ########.fr        #
+#    Updated: 2022/07/08 17:10:20 by amarzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ BONUS = ./libft/ft_putendl_fd.c		\
 		./libft/ft_strnstr.c		\
 		./libft/ft_substr.c			\
 		./utils.c					\
-		./pipex_bonus.c
+		./bonus.c
 
 all: $(NAME)
 
