@@ -6,11 +6,59 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 03:34:16 by amarzana          #+#    #+#             */
-/*   Updated: 2022/07/09 03:48:05 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/07/09 13:50:22 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
+
+char	*ft_make_word(char const *s, char c, int i)
+{
+	char	*word;
+	int		count;
+
+	count = i;
+	if (s[count++] == 39)
+	{
+		while (s[count] && s[count] != 39)
+			count++;
+		word = ft_substr(s, i + 1, count - i - 1);
+	}
+	else
+	{
+		while (s[count] && s[count] != c)
+			count++;
+		word = ft_substr(s, i, count - i);
+	}
+	return (word);
+}
+
+char	*ft_get_word(char const *s, char c, int row)
+{
+	int		i;
+	int		count;
+	char	*word;
+
+	word = NULL;
+	i = -1;
+	count = -1;
+	while (++i < (int)ft_strlen(s) && s[i])
+	{
+		if (s[i] != c)
+			count++;
+		if (count == row && s[i] != c)
+		{
+			word = ft_make_word(s, c, i);
+			if (!word)
+				return (NULL);
+		}
+		while (s[i] && s[i] != c)
+			if (s[i++] == 39)
+				while (s[i] && s[i] != 39)
+					i++;
+	}
+	return (word);
+}
 
 int	ft_coincidences(char const *s, char c)
 {
@@ -40,54 +88,6 @@ int	ft_coincidences(char const *s, char c)
 	return (coin);
 }
 
-char	*ft_make_str(char const *s, char c, int i)
-{
-	char	*str_row;
-	int		counter;
-
-	counter = i;
-	if (s[counter++] == 39)
-	{
-		while (s[counter] && s[counter] != 39)
-			counter++;
-		str_row = ft_substr(s, i + 1, counter - i - 1);
-	}
-	else
-	{
-		while (s[counter] && s[counter] != c)
-			counter++;
-		str_row = ft_substr(s, i, counter - i);
-	}
-	return (str_row);
-}
-
-char	*ft_get_row(char const *s, char c, int row)
-{
-	int		i;
-	int		counter;
-	char	*str_row;
-
-	str_row = NULL;
-	i = -1;
-	counter = -1;
-	while (++i < (int)ft_strlen(s) && s[i])
-	{
-		if (s[i] != c)
-			counter++;
-		if (counter == row && s[i] != c)
-		{
-			str_row = ft_make_str(s, c, i);
-			if (!str_row)
-				return (NULL);
-		}
-		while (s[i] && s[i] != c)
-			if (s[i++] == 39)
-				while (s[i] && s[i] != 39)
-					i++;
-	}
-	return (str_row);
-}
-
 char	**ft_split(char const *s, char c)
 {
 	char	**split;
@@ -105,7 +105,7 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	while (i < coin)
 	{
-		split[i] = ft_get_row(s, c, i);
+		split[i] = ft_get_word(s, c, i);
 		if (split[i] == NULL)
 			return (NULL);
 		i++;
