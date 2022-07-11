@@ -6,11 +6,14 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:14:19 by amarzana          #+#    #+#             */
-/*   Updated: 2022/07/08 17:46:18 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/07/11 10:00:31 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 void	ft_free(char **ptr)
 {

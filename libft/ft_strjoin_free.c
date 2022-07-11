@@ -6,11 +6,12 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 15:27:24 by amarzana          #+#    #+#             */
-/*   Updated: 2022/06/30 17:51:04 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/07/11 09:57:28 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
+#include <stdlib.h>
 
 char	*ft_strjoin_free(char *s1, char *s2)
 {

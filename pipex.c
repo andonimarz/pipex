@@ -6,11 +6,15 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:19:13 by amarzana          #+#    #+#             */
-/*   Updated: 2022/07/08 17:54:14 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/07/11 10:02:30 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/wait.h>
 
 static void	ft_child_1(int *fd, char **argv, char **envp)
 {
@@ -47,6 +51,7 @@ static void	ft_child_2(int *fd, char **argv, char **envp)
 	dup2(fd[0], STDIN_FILENO);
 	close(fd[0]);
 	dup2(fd_outfile, STDOUT_FILENO);
+	close(fd_outfile);
 	argv_sp = ft_split(argv[3], ' ');
 	path = ft_get_path(argv_sp, envp);
 	if (execve(path, argv_sp, envp) == -1)

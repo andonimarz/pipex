@@ -6,11 +6,12 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 03:34:16 by amarzana          #+#    #+#             */
-/*   Updated: 2022/07/09 13:50:22 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/07/11 09:56:51 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
+#include <stdlib.h>
 
 char	*ft_make_word(char const *s, char c, int i)
 {

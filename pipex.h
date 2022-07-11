@@ -6,19 +6,14 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:28:25 by amarzana          #+#    #+#             */
-/*   Updated: 2022/07/05 12:48:40 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/07/11 09:58:58 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-/*			includes		*/
-# include <stdlib.h>
-# include <unistd.h>
 # include <stdio.h>
-# include <fcntl.h>
-# include <sys/wait.h>
 
 /*			mini_libft		*/
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);

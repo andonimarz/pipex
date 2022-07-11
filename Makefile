@@ -6,13 +6,13 @@
 #    By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/20 13:17:29 by amarzana          #+#    #+#              #
-#    Updated: 2022/07/08 18:21:16 by amarzana         ###   ########.fr        #
+#    Updated: 2022/07/11 10:56:27 by amarzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3
 OBJ = $(SRC:.c=.o)
 BONUS_OBJ = $(BONUS:.c=.o)
 
@@ -60,7 +60,6 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@rm -f outfile
 	@echo Executable file removed
 
 re: fclean all
