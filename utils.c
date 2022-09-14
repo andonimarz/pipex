@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:14:19 by amarzana          #+#    #+#             */
-/*   Updated: 2022/07/11 10:00:31 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/14 16:02:06 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,23 @@ int	ft_get_fd(char *file, int mode)
 		}
 		return (fd);
 	}
-	else
+	else if (mode == 1)
 	{
 		fd = open(file, O_CREAT | O_RDWR | O_TRUNC, 0644);
 		return (fd);
 	}
+	else
+	{
+		fd = open(file, O_CREAT | O_RDWR | O_APPEND, 0644);
+		return (fd);
+	}
 }
 
-void	ft_check_cmd(int argc, char **argv, char **envp)
+void	ft_check_cmd(int argc, char **argv, char **envp, int i)
 {
 	char	*path;
 	char	**argv_sp;
-	int		i;
 
-	i = 2;
 	while (i <= (argc - 2))
 	{
 		argv_sp = ft_split(argv[i], ' ');

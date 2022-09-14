@@ -6,7 +6,7 @@
 #    By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/20 13:17:29 by amarzana          #+#    #+#              #
-#    Updated: 2022/07/11 10:56:27 by amarzana         ###   ########.fr        #
+#    Updated: 2022/09/14 15:31:35 by amarzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC = 	./libft/ft_putendl_fd.c		\
 		./libft/ft_strlen.c			\
 		./libft/ft_strnstr.c		\
 		./libft/ft_substr.c			\
+		./libft/ft_strncmp.c		\
 		./utils.c					\
 		./pipex.c
 
@@ -37,6 +38,7 @@ BONUS = ./libft/ft_putendl_fd.c		\
 		./libft/ft_strlen.c			\
 		./libft/ft_strnstr.c		\
 		./libft/ft_substr.c			\
+		./libft/ft_strncmp.c		\
 		./utils.c					\
 		./bonus.c
 

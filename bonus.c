@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:19:13 by amarzana          #+#    #+#             */
-/*   Updated: 2022/07/11 10:05:26 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/14 15:59:11 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,32 @@ static void	ft_dups(int argc, char **argv)
 	int	fdin;
 	int	fdout;
 
-	fdin = ft_get_fd(argv[1], 0);
-	fdout = ft_get_fd(argv[argc - 1], 1);
+	if (ft_strncmp(argv[1], "here_doc", ft_strlen(argv[1])) == 0)
+	{
+		fdin = ft_get_fd(argv[2], 0);
+		fdout = ft_get_fd(argv[argc - 1], 2);
+	}
+	else
+	{
+		fdin = ft_get_fd(argv[1], 0);
+		fdout = ft_get_fd(argv[argc - 1], 1);
+	}
 	dup2(fdin, STDIN_FILENO);
 	close (fdin);
 	dup2(fdout, STDOUT_FILENO);
 	close (fdout);
+}
+
+int	ft_check_input(char **argv)
+{
+	int	i;
+
+	i = 0;
+	if (ft_strncmp(argv[1], "here_doc", ft_strlen(argv[1])) == 0)
+			i = 3;
+	else
+			i = 2;
+	return (i);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -80,16 +100,16 @@ int	main(int argc, char **argv, char **envp)
 		ft_putstr_fd("Too few arguments. Check and try again\n", 2);
 	else
 	{
-		i = 1;
-		ft_check_cmd(argc, argv, envp);
+		i = ft_check_input(argv);
+		ft_check_cmd(argc, argv, envp, i);
 		ft_dups(argc, argv);
 		pid = fork();
 		if (pid < 0)
 			perror("Error");
 		if (pid == 0)
 		{
-			while (++i < (argc - 2))
-				ft_pipex(argv[i], envp);
+			while (i < (argc - 2))
+				ft_pipex(argv[i++], envp);
 			ft_child(argv[i], envp);
 		}
 		else

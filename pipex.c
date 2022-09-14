@@ -6,7 +6,7 @@
 /*   By: amarzana <amarzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:19:13 by amarzana          #+#    #+#             */
-/*   Updated: 2022/07/11 10:02:30 by amarzana         ###   ########.fr       */
+/*   Updated: 2022/09/14 15:54:40 by amarzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	main(int argc, char **argv, char **envp)
 		ft_putstr_fd("Invalid argument number. Check and try again\n", 2);
 		exit(0);
 	}
-	ft_check_cmd(argc, argv, envp);
+	ft_check_cmd(argc, argv, envp, 2);
 	ft_pipex(argv, envp);
 	return (0);
 }
